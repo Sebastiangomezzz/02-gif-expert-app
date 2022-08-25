@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 export const AddCategoryInput = ({ onNewCategory }) => {
-  const [inputValue, setinputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   const onInputChange = ({ target }) => {
-    setinputValue(target.value);
+    setInputValue(target.value);
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    if (inputValue !== "" && inputValue.trim().length > 2) {
-      onNewCategory(inputValue.trim());
-      setinputValue("");
-    } else return;
+    if (inputValue.trim().length <= 1) return;
+
+    setInputValue("");
+    onNewCategory(inputValue.trim());
   };
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} aria-label="form">
       <input
         name="add_category"
         type="text"
@@ -25,4 +27,8 @@ export const AddCategoryInput = ({ onNewCategory }) => {
       <input type="submit" />
     </form>
   );
+};
+
+AddCategoryInput.propTypes = {
+  onNewCategory: PropTypes.func.isRequired,
 };
