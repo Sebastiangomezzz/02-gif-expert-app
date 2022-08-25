@@ -36,8 +36,7 @@ describe("GifGrid tests", () => {
       isError: false,
     });
     render(<GifGrid category={category} />);
-      
-      screen.debug();
-      expect(screen.getAllByRole('img').length).toBe(2);
+    //screen.debug();
+    expect(screen.getAllByRole("img").length).toBe(2);
   });
 });
